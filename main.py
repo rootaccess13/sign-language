@@ -6,7 +6,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = whisper.load_model("turbo")  # You can use other models: tiny, small, medium, large
+model = whisper.load_model("turbo")
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
@@ -15,9 +15,9 @@ def transcribe():
 
         audio_data = io.BytesIO(audio_file.read())
 
-        audio = whisper.load_audio(audio_data)  # This converts it to np.ndarray
+        audio = whisper.load_audio(audio_data) 
 
-        audio = whisper.pad_or_trim(audio)  # Whisper models usually require fixed-length input
+        audio = whisper.pad_or_trim(audio)
 
         result = model.transcribe(audio)
 
